@@ -1,21 +1,28 @@
-
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-
-
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CourseSessionTest {
     private CourseSession session;
+    private Date startDate;
 
+    @Before
     public void setUp() {
-        CourseSession session = new CourseSession("ENGL", "101");
+        int year = 103;
+        int month = 0;
+        int date = 6;
+        startDate = new Date(year, month, date);
+        session = new CourseSession("ENGL", "101", startDate);
     }
+
     @Test
     public void testCreate() {
         Assert.assertEquals("ENGL", session.getDepartment());
         Assert.assertEquals("101", session.getNumber());
         Assert.assertEquals(0, session.getNumberOfStudents());
+        Assert.assertEquals(startDate, session.getStartDate());
     }
 
     public void testEnrollStudents() {
@@ -33,5 +40,13 @@ public class CourseSessionTest {
         Assert.assertEquals(2, allStudents.size());
         Assert.assertEquals(student1, allStudents.get(0));
         Assert.assertEquals(student2, allStudents.get(0));
+    }
+
+    public void testCourseDates() {
+        int year = 103;
+        int month = 0;
+        int date = 6;
+        Date sixteenWeeksOut = new Date(year, month, date);
+        Assert.assertEquals(sixteenWeeksOut, session.getEndDate());
     }
 }

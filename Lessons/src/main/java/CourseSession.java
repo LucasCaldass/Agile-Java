@@ -1,13 +1,15 @@
-import java.util.ArrayList;
+import java.util.*;
+
 public class CourseSession {
     private final String department;
     private final String number;
     private final ArrayList <Student> students = new ArrayList<>();
+    private Date startDate;
 
-
-    public CourseSession(String department, String number) {
+    public CourseSession(String department, String number, Date starDate) {
         this.department = department;
         this.number = number;
+        this.startDate = starDate;
     }
 
     String getDepartment() {
@@ -28,5 +30,17 @@ public class CourseSession {
 
     ArrayList<Student> getAllStudents() {
         return students;
+    }
+
+    Date getEndDate() {
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.setTime(startDate);
+        int numberOfDays = 16 * 7 - 3;
+        calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
+        return calendar.getTime();
+    }
+
+    Date getStartDate() {
+        return startDate;
     }
 }
