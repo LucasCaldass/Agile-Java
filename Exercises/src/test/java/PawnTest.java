@@ -1,16 +1,16 @@
-import org.junit.Test;
-
+import org.junit.*;
 import static org.junit.Assert.assertEquals;
 
 public class PawnTest {
     @Test
     public void testCreate() {
-        final String pawnColor = "White";
-        Pawn firstPawn = new Pawn(pawnColor);
-        assertEquals(pawnColor, firstPawn.getColor());
+        Pawn pawn = new Pawn();
+        Assert.assertEquals("White", pawn.getColor());
+        
+        Pawn secondPawn = new Pawn();
+        Assert.assertEquals("Black", secondPawn.getColor());
 
-        final String secondPawnColor = "Black";
-        Pawn secondPawn = new Pawn(secondPawnColor);
-        assertEquals(secondPawnColor, secondPawn.getColor());
+        Pawn blankPawn = new Pawn();
+        Assert.assertEquals("White", blankPawn.getColor());
     }
 }
