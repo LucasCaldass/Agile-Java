@@ -1,23 +1,30 @@
-import java.util.*;
+ import java.util.*;
 
 /**
  * Provides a representation of a single-semester
  * session of a specific university course.
  * @author Administrator
  */
+
 public class CourseSession {
+    static final String NEWLINE =
+            System.getProperty("line.separetor");
+    static final String ROSTER_REPORT_HEADER =
+            "Student" + NEWLINE + "-" + NEWLINE;
+    static final String ROSTER_REPORT_FOOTER =
+            NEWLINE + "# students = ";
     private final String department;
     private final String number;
     private final ArrayList <Student> students = new ArrayList<>();
-    private Date startDate;
+    private final Date startDate;
 
     public CourseSession(String department, String number, Date starDate) {
 
-    /**
-     * Constructs a CourseSession starting on a specific date
-     *
-     * @param startDate the date on which the CourseSession begins
-     */
+        /**
+         * Constructs a CourseSession starting on a specific date
+         *
+         * @param startDate the date on which the CourseSession begins
+         */
         this.department = department;
         this.number = number;
         this.startDate = starDate;
@@ -59,5 +66,20 @@ public class CourseSession {
 
     Date getStartDate() {
         return startDate;
+    }
+
+    public String getRosterReport() {
+        StringBuilder buffer = new StringBuilder();
+
+        buffer.append(ROSTER_REPORT_HEADER);
+
+        for(Student student : students) {
+            buffer.append(student.getName());
+            buffer.append(NEWLINE);
+        }
+
+        buffer.append(ROSTER_REPORT_FOOTER + students.size() + NEWLINE);
+
+        return buffer.toString();
     }
 }

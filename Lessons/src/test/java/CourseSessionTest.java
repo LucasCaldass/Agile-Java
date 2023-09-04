@@ -41,13 +41,18 @@ public class CourseSessionTest {
         Assert.assertEquals(sixteenWeeksOut, session.getEndDate());
     }
 
-    Date createDate(int year, int month, int date) {
-        GregorianCalendar calendar = new GregorianCalendar();
-        calendar.clear();
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month - 1);
-        calendar.set(Calendar.DAY_OF_MONTH, date);
-        return calendar.getTime();
+    public void testRosterReport() {
+        Student studentA = new Student("A");
+        Student studentB = new Student("B");
+        session.enroll(studentA);
+        session.enroll(studentB);
+
+        String rosterReport = session.getRosterReport();
+        Assert.assertEquals(
+                CourseSession.ROSTER_REPORT_HEADER +
+                "A" + CourseSession.NEWLINE +
+                "B" + CourseSession.NEWLINE +
+                CourseSession.ROSTER_REPORT_FOOTER + "2" +
+                CourseSession.NEWLINE, rosterReport);
     }
 }
