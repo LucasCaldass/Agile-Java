@@ -1,4 +1,6 @@
- import java.util.*;
+package studentinfo;
+
+import java.util.*;
 
 /**
  * Provides a representation of a single-semester
@@ -10,7 +12,7 @@ public class CourseSession {
     static final String NEWLINE =
             System.getProperty("line.separetor");
     static final String ROSTER_REPORT_HEADER =
-            "Student" + NEWLINE + "-" + NEWLINE;
+            "studentinfo.Student" + NEWLINE + "-" + NEWLINE;
     static final String ROSTER_REPORT_FOOTER =
             NEWLINE + "# students = ";
     private final String department;
@@ -21,9 +23,9 @@ public class CourseSession {
     public CourseSession(String department, String number, Date starDate) {
 
         /**
-         * Constructs a CourseSession starting on a specific date
+         * Constructs a studentinfo.CourseSession starting on a specific date
          *
-         * @param startDate the date on which the CourseSession begins
+         * @param startDate the date on which the studentinfo.CourseSession begins
          */
         this.department = department;
         this.number = number;

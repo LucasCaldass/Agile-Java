@@ -1,5 +1,13 @@
+package studentinfo;
+
 import org.junit.*;
+import studentinfo.CourseSession;
+import studentinfo.Student;
+
 import java.util.*;
+
+import static studentinfo.DateUtil.createDate;
+
 
 public class CourseSessionTest {
     private CourseSession session;
@@ -19,6 +27,7 @@ public class CourseSessionTest {
         Assert.assertEquals(startDate, session.getStartDate());
     }
 
+    @Test
     public void testEnrollStudents() {
 
         Student student1 = new Student("Cain DiVoe");
@@ -33,14 +42,16 @@ public class CourseSessionTest {
         Assert.assertEquals(2,session.getNumberOfStudents());
         Assert.assertEquals(2, allStudents.size());
         Assert.assertEquals(student1, allStudents.get(0));
-        Assert.assertEquals(student2, allStudents.get(0));
+        Assert.assertEquals(student2, allStudents.get(1));
     }
 
+    @Test
     public void testCourseDates() {
         Date sixteenWeeksOut = createDate(2003, 4, 25);
         Assert.assertEquals(sixteenWeeksOut, session.getEndDate());
     }
 
+    @Test
     public void testRosterReport() {
         Student studentA = new Student("A");
         Student studentB = new Student("B");

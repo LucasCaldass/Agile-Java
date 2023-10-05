@@ -1,4 +1,7 @@
+package studentinfo;
+
 import org.junit.*;
+import studentinfo.Student;
 
 public class StudentTest {
     @Test

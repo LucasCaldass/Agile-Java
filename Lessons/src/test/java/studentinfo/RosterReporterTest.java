@@ -1,9 +1,15 @@
-import junit.framework.TestCase;
+package studentinfo;
+
 import org.junit.Assert;
+import org.junit.Test;
 
 import java.util.*;
 
+import static studentinfo.DateUtil.createDate;
+
 public class RosterReporterTest {
+
+    @Test
     public void testRosterReport() {
         CourseSession session = new CourseSession("ENGL", "101", createDate(2003, 1, 6));
 

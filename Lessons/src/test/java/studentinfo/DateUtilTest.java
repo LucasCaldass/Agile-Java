@@ -1,12 +1,15 @@
+package studentinfo;
+
 import java.util.*;
-import junit.framework.*;
-import org.junit.Assert;
+import static org.junit.Assert.*;
+import static studentinfo.DateUtil.createDate;
+
 import org.junit.Test;
 
-public class DateUtilTest extends TestCase {
+public class DateUtilTest {
     @Test
     public void testCreateDate() {
-        Date date = new Date(2000, 1, 1);
+        Date date = createDate(2000, 1, 1);
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(date);
         assertEquals(2000, calendar.get(Calendar.YEAR));
