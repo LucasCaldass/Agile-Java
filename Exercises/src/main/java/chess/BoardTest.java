@@ -15,13 +15,13 @@ public class BoardTest {
         board.addPawn(whitePawn, board);
 
         Assert.assertEquals(2, board.getNumberOfPieces());
-        //board.getPieces();
+        board.getPieces();
 
-        /*
+
         int n = 7;
         board.addPawn(7, board);
         board.getPieces();
-        */
+
 
 
     }

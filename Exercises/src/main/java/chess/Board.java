@@ -1,8 +1,8 @@
 package chess;
 
 import pieces.Pawn;
-
 import java.util.*;
+
 public class Board {
     private final ArrayList<String> listOfPieces = new ArrayList<>();
     private int pieces;
@@ -36,5 +36,4 @@ public class Board {
         }
 
     }
-
 }

@@ -10,7 +10,7 @@ import java.util.*;
 
 public class CourseSession {
     static final String NEWLINE =
-            System.getProperty("line.separetor");
+            System.getProperty("line.separator");
     static final String ROSTER_REPORT_HEADER =
             "studentinfo.Student" + NEWLINE + "-" + NEWLINE;
     static final String ROSTER_REPORT_FOOTER =
@@ -44,11 +44,15 @@ public class CourseSession {
         return students.size();
     }
 
-    void enroll(Student student) {
+    public void enroll(Student student) {
         students.add(student);
     }
 
-    ArrayList<Student> getAllStudents() {
+    Student get(int index) {
+        return students.get(index);
+    }
+
+    public ArrayList<Student> getAllStudents() {
         return students;
     }
 

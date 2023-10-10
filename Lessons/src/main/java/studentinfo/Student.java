@@ -1,11 +1,11 @@
 package studentinfo;
 
 public class Student {
-    String name;
-    Student(String name) {
+    private final String name;
+    public Student(String name) {
         this.name = name;
     }
-    String getName(){
+    public String getName(){
         return name;
     }
 }
