@@ -17,4 +17,35 @@ public class StudentTest {
 
         //assertEquals(firstStudentName, firstStudent.name);
     }
+
+    @Test
+    public void testFullTime() {
+        Student student = new Student("a");
+        Assert.assertFalse(student.isFullTime());
+    }
+
+    @Test
+    public void testCredits() {
+        Student student = new Student("a");
+        Assert.assertEquals(0, student.getCredits());
+        student.addCredits(3);
+        Assert.assertEquals(3, student.getCredits());
+        student.addCredits(4);
+        Assert.assertEquals(7, student.getCredits());
+    }
+
+    @Test
+    public void testStudentStatus() {
+        Student student = new Student("a");
+        Assert.assertEquals(0, student.getCredits());
+        Assert.assertFalse(student.isFullTime());
+
+        student.addCredits(3);
+        Assert.assertEquals(3, student.getCredits());
+        Assert.assertFalse(student.isFullTime());
+
+        student.addCredits(4);
+        Assert.assertEquals(7, student.getCredits());
+        Assert.assertFalse(student.isFullTime());
+    }
 }

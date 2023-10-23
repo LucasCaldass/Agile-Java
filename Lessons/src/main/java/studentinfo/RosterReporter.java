@@ -1,10 +1,9 @@
 package studentinfo;
 
 import java.util.*;
+import static studentinfo.report.ReportConstant.NEWLINE;
 
 public class RosterReporter {
-    static final String NEWLINE =
-            System.getProperty("line.separator");
     static final String ROSTER_REPORT_HEADER =
             "studentinfo.Student" + NEWLINE +
             "-" + NEWLINE;

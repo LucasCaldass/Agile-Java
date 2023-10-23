@@ -20,7 +20,9 @@ public class CourseSession {
     private final ArrayList <Student> students = new ArrayList<>();
     private final Date startDate;
 
-    public CourseSession(String department, String number, Date starDate) {
+private static int count;
+
+    private CourseSession(String department, String number, Date starDate) {
 
         /**
          * Constructs a studentinfo.CourseSession starting on a specific date
@@ -87,5 +89,26 @@ public class CourseSession {
         buffer.append(ROSTER_REPORT_FOOTER + students.size() + NEWLINE);
 
         return buffer.toString();
+    }
+
+    static void resetCount() {
+        count = 0;
+    }
+
+    static int getCount() {
+        return count;
+    }
+
+    private static void incrementCount() {
+        count++;
+    }
+
+    public static CourseSession create(
+            String department,
+            String number,
+            Date startDate
+    ) {
+        incrementCount();
+        return new CourseSession(department, number, startDate);
     }
 }
