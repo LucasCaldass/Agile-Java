@@ -1,4 +1,4 @@
-package studentinfo.report;
+package sis.report;
 
 public class ReportConstant {
     public static final String NEWLINE =

@@ -1,14 +1,13 @@
-package studentinfo;
+package sis.studentinfo;
 
-import java.util.*;
-import static studentinfo.report.ReportConstant.NEWLINE;
+import sis.report.ReportConstant;
 
 public class RosterReporter {
     static final String ROSTER_REPORT_HEADER =
-            "studentinfo.Student" + NEWLINE +
-            "-" + NEWLINE;
+            "studentinfo.Student" + ReportConstant.NEWLINE +
+            "-" + ReportConstant.NEWLINE;
     static final String ROSTER_REPORT_FOOTER =
-            NEWLINE + "# students = ";
+            ReportConstant.NEWLINE + "# students = ";
 
     private CourseSession session;
 
@@ -23,11 +22,11 @@ public class RosterReporter {
 
         for(Student student : session.getAllStudents()) {
             buffer.append(student.getName());
-            buffer.append(NEWLINE);
+            buffer.append(ReportConstant.NEWLINE);
         }
 
         buffer.append(
-                ROSTER_REPORT_FOOTER + session.getAllStudents().size() + NEWLINE
+                ROSTER_REPORT_FOOTER + session.getAllStudents().size() + ReportConstant.NEWLINE
         );
 
         return buffer.toString();

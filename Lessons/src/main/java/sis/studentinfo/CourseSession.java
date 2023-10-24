@@ -1,4 +1,4 @@
-package studentinfo;
+package sis.studentinfo;
 
 import java.util.*;
 
@@ -34,11 +34,11 @@ private static int count;
         this.startDate = starDate;
     }
 
-    String getDepartment() {
+    public String getDepartment() {
         return department;
     }
 
-    String getNumber() {
+    public String getNumber() {
         return number;
     }
 
@@ -47,6 +47,7 @@ private static int count;
     }
 
     public void enroll(Student student) {
+        student.addCredits(numberOfCredits);
         students.add(student);
     }
 
@@ -56,6 +57,10 @@ private static int count;
 
     public ArrayList<Student> getAllStudents() {
         return students;
+    }
+    private int numberOfCredits;
+    void setNumberOfCredits(int numberOfCredits) {
+        this.numberOfCredits = numberOfCredits;
     }
 
     /**

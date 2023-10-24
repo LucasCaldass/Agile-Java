@@ -1,19 +1,19 @@
-package studentinfo;
+package sis.studentinfo;
 
 import org.junit.*;
-import studentinfo.CourseSession;
-import studentinfo.Student;
+
 import java.util.*;
-import static studentinfo.DateUtil.createDate;
+import static sis.studentinfo.DateUtil.createDate;
 
 public class CourseSessionTest {
     private CourseSession session;
     private Date startDate;
+    private static final int CREDITS = 3;
 
     @Before
     public void setUp() {
         startDate = DateUtil.createDate(2003, 1, 6);
-        session = CourseSession.create("ENGL", "101", startDate);
+        session = createCourseSession();
     }
 
     @Test
@@ -29,6 +29,7 @@ public class CourseSessionTest {
 
         Student student1 = new Student("Cain DiVoe");
         session.enroll(student1);
+        Assert.assertEquals(CREDITS, student1.getCredits());
         Assert.assertEquals(1, session.getNumberOfStudents());
         ArrayList <Student> allStudents = session.getAllStudents();
         Assert.assertEquals(1, allStudents.size());
@@ -36,8 +37,10 @@ public class CourseSessionTest {
 
         Student student2 = new Student("Coralee DeVaughn");
         session.enroll(student2);
+        Assert.assertEquals(CREDITS, student2.getCredits());
         Assert.assertEquals(2,session.getNumberOfStudents());
         Assert.assertEquals(2, allStudents.size());
+
         Assert.assertEquals(student1, allStudents.get(0));
         Assert.assertEquals(student2, allStudents.get(1));
     }
@@ -74,6 +77,9 @@ public class CourseSessionTest {
     }
 
     private CourseSession createCourseSession() {
-        return CourseSession.create("ENGL", "101", startDate);
+        CourseSession session =
+                CourseSession.create("ENGL", "101", startDate);
+        session.setNumberOfCredits(CourseSessionTest.CREDITS);
+        return session;
     }
 }

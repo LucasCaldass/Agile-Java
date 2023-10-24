@@ -1,12 +1,14 @@
-package studentinfo;
+package sis.studentinfo;
 
 import org.junit.Assert;
 import org.junit.Test;
-import static studentinfo.report.ReportConstant.NEWLINE;
+import sis.studentinfo.CourseSession;
+import sis.studentinfo.RosterReporter;
+import sis.studentinfo.Student;
 
-import java.util.*;
+import static sis.report.ReportConstant.NEWLINE;
 
-import static studentinfo.DateUtil.createDate;
+import static sis.studentinfo.DateUtil.createDate;
 
 public class RosterReporterTest {
 
