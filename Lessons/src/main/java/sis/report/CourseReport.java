@@ -13,6 +13,7 @@ public class CourseReport {
     }
 
     public String text() {
+        Collections.sort(sessions);
         StringBuilder builder = new StringBuilder();
         for(CourseSession session : sessions) {
             builder.append(

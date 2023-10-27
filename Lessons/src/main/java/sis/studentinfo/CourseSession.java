@@ -8,7 +8,7 @@ import java.util.*;
  * @author Administrator
  */
 
-public class CourseSession {
+public class CourseSession implements Comparable<CourseSession>{
     static final String NEWLINE =
             System.getProperty("line.separator");
     static final String ROSTER_REPORT_HEADER =
@@ -24,10 +24,10 @@ private static int count;
 
     private CourseSession(String department, String number, Date starDate) {
 
-        /**
-         * Constructs a studentinfo.CourseSession starting on a specific date
-         *
-         * @param startDate the date on which the studentinfo.CourseSession begins
+        /*
+          Constructs a studentinfo.CourseSession starting on a specific date
+
+          @param startDate the date on which the studentinfo.CourseSession begins
          */
         this.department = department;
         this.number = number;
@@ -115,5 +115,14 @@ private static int count;
     ) {
         incrementCount();
         return new CourseSession(department, number, startDate);
+    }
+
+    @Override
+    public int compareTo(CourseSession that) {
+        int compare =
+                this.getDepartment().compareTo(that.department);
+        if (compare == 0)
+            compare = this.getNumber().compareTo(that.getNumber());
+        return compare;
     }
 }

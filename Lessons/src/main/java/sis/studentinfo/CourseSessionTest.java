@@ -82,4 +82,20 @@ public class CourseSessionTest {
         session.setNumberOfCredits(CourseSessionTest.CREDITS);
         return session;
     }
+
+    @Test
+    public void testComparable() {
+        final Date date = new Date();
+        CourseSession sessionA = CourseSession.create("CMSC", "101", date);
+        CourseSession sessionB = CourseSession.create("ENGL", "101", date);
+        Assert.assertTrue(sessionA.compareTo(sessionB) < 0);
+        Assert.assertTrue(sessionB.compareTo(sessionA) > 0);
+
+        CourseSession sessionC = CourseSession.create("CMSC", "101", date);
+        Assert.assertEquals(0, sessionA.compareTo(sessionC));
+
+        CourseSession sessionD = CourseSession.create("CMSC", "210", date);
+        Assert.assertTrue(sessionC.compareTo(sessionD) < 0);
+        Assert.assertTrue(sessionD.compareTo(sessionC) > 0);
+    }
 }
