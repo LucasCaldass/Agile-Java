@@ -2,9 +2,34 @@ package sis.studentinfo;
 
 import java.util.*;
 
-public class Student {
+public class Student  implements Comparable<Student> {
+    private GradingStrategy gradingStrategy =
+            new BasicGradingStrategy();
     private boolean isHonors = false;
-    enum Grade {A, B, C, D, F};
+
+    @Override
+    public int compareTo(Student o) {
+        return 0;
+    }
+
+    public enum Grade {
+        A(4),
+        B(3),
+        C(2),
+        D(1),
+        F(0);
+
+        private int points;
+
+        Grade(int points) {
+            this.points = points;
+        }
+
+        int getPoints() {
+            return points;
+        }
+    };
+
     private ArrayList<Grade> grades = new ArrayList<>();
     static final String IN_STATE = "CO";
     private String name;
@@ -48,29 +73,16 @@ public class Student {
             return 0.0;
         double total = 0.0;
         for (Grade grade : grades) {
-            total += gradePointsFor(grade);
+            total += gradingStrategy.getGradePointsFor(grade);
         }
         return total / grades.size();
-    }
-
-    int gradePointsFor(Grade grade) {
-        int points = basicGradePointsFor(grade);
-        if (isHonors)
-            if (points > 0)
-                points += 1;
-        return points;
-    }
-
-    private int basicGradePointsFor(Grade grade) {
-        if (grade == Grade.A) return 4;
-        if (grade == Grade.B) return 3;
-        if (grade == Grade.C) return 2;
-        if (grade == Grade.D) return 1;
-        return 0;
     }
 
     void setHonors() {
         isHonors = true;
     }
 
+    void setGradingStrategy(GradingStrategy gradingStrategy) {
+        this.gradingStrategy = gradingStrategy;
+    }
 }

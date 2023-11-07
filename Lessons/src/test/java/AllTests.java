@@ -1,14 +1,13 @@
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import sis.studentinfo.CourseSessionTest;
-import sis.studentinfo.DateUtilTest;
-import sis.studentinfo.RosterReporterTest;
-import sis.studentinfo.StudentTest;
+import sis.studentinfo.*;
 
 @RunWith(Suite.class) @Suite.SuiteClasses({
         StudentTest.class,
         CourseSessionTest.class,
         RosterReporterTest.class,
-        DateUtilTest.class
+        DateUtilTest.class,
+        BasicGradingStrategyTest.class,
+        HonorsGradingStrategyTest.class
 })
 public class AllTests{}

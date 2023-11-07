@@ -86,13 +86,14 @@ public class StudentTest {
         Assert.assertEquals(expectedGpa, student.getGpa(), GRADE_TOLERANCE);
     }
 
+    @Test
     public void testCalculateHonorsStudentGpa() {
         assertGpa(createHonorsStudent(), 0.0);
         assertGpa(createHonorsStudent(Student.Grade.A), 5.0);
         assertGpa(createHonorsStudent(Student.Grade.B), 4.0);
         assertGpa(createHonorsStudent(Student.Grade.C), 3.0);
         assertGpa(createHonorsStudent(Student.Grade.D), 2.0);
-        assertGpa(createHonorsStudent(Student.Grade.F), 1.0);
+        assertGpa(createHonorsStudent(Student.Grade.F), 0.0);
     }
 
     private Student createHonorsStudent(Student.Grade grade) {
@@ -103,7 +104,7 @@ public class StudentTest {
 
     private Student createHonorsStudent() {
         Student student = new Student("a");
-        student.setHonors();
+        student.setGradingStrategy(new HonorsGradingStrategy());
         return student;
     }
 }
