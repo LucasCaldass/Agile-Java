@@ -2,6 +2,7 @@ package sis.studentinfo;
 
 import junit.framework.TestCase;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
@@ -12,6 +13,7 @@ abstract public class SessionTest {
     private Date startDate;
     public static final int CREDITS = 3;
 
+    @Before
     public void setUp() {
         startDate = createDate(2003, 1, 6);
         session = createSession("ENGL", "101", startDate);
@@ -59,4 +61,5 @@ abstract public class SessionTest {
         Assert.assertEquals(student1, session.get(0));
         Assert.assertEquals(student2, session.get(1));
     }
+
 }
