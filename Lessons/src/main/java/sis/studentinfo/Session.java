@@ -57,10 +57,4 @@ abstract public class Session implements Comparable<Session> {
         calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
         return calendar.getTime();
     }
-
-    public void testSessionLength() {
-        Session session = createSession(new Date());
-        Assert.assertTrue(session.getSessionLength() > 0);
-    }
-
 }
