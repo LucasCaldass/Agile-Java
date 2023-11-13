@@ -44,7 +44,7 @@ public class Student  implements Comparable<Student> {
         this.name = fullName;
         credits = 0;
         List<String> nameParts = Arrays.asList(fullName.split(" "));
-        setName(nameParts);
+        //setName(nameParts);
     }
     public String getName(){
         return name;
