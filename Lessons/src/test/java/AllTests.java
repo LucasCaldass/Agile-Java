@@ -8,6 +8,7 @@ import sis.studentinfo.*;
         RosterReporterTest.class,
         DateUtilTest.class,
         BasicGradingStrategyTest.class,
-        HonorsGradingStrategyTest.class
+        HonorsGradingStrategyTest.class,
+        PerformanceTest.class
 })
 public class AllTests{}

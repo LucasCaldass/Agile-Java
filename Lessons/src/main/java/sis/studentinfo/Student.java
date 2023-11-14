@@ -43,9 +43,10 @@ public class Student  implements Comparable<Student> {
     public Student(String fullName) {
         this.name = fullName;
         credits = 0;
-        List<String> nameParts = Arrays.asList(fullName.split(" "));
-        //setName(nameParts);
+        List<String> nameParts = split(fullName);
+        setName(nameParts);
     }
+
     public String getName(){
         return name;
     }
@@ -73,6 +74,8 @@ public class Student  implements Comparable<Student> {
     void addGrade(Grade grade) {
         grades.add(grade);
     }
+
+    private List<Integer> charges = new ArrayList<Integer>();
 
     double getGpa() {
         if (grades.isEmpty())
@@ -102,7 +105,7 @@ public class Student  implements Comparable<Student> {
         return lastName;
     }
 
-    /*private void setName(List<String> nameParts) {
+    private void setName(List<String> nameParts) {
         this.lastName = removeLast(nameParts);
         String name = removeLast(nameParts);
 
@@ -113,30 +116,50 @@ public class Student  implements Comparable<Student> {
             this.middleName = name;
             this.firstName = removeLast(nameParts);
         }
-    }*/
+    }
 
     private String removeLast(List<String> list) {
-        if(list.isEmpty())
+        if (list.isEmpty())
             return "";
         return list.remove(list.size() - 1);
     }
 
-    /*private List<String> tokenize(String string) {
+    private List<String> split(String fullName) {
         List<String> results = new ArrayList<String>();
-        StringBuffer word = new StringBuffer();
-        int index = 0;
-        while (index < string.length()) {
-            char ch = string.charAt(index);
-            if (ch != ' ') word.append(ch);
-            else
-                if (word.length() > 0) {
-                    results.add(word.toString());
-                    word = new StringBuffer();
-                }
-            index++;
-        }
-        if (word.length() > 0)
-            results.add(word.toString());
+        for (String name: fullName.split(" "))
+            results.add(name);
         return results;
-    }*/
+    }
+
+    public static int countChars(String input, char ch) {
+        int count;
+        int i;
+        for (i = 0, count = 0; i < input.length(); i++) {
+            if (input.charAt(i) == ch)
+                count++;
+        }
+        return count;
+    }
+
+    public static boolean isPalindrome(String string) {
+        if (string.length() == 0)
+            return true;
+        int limit = string.length()/2;
+        for (int forward = 0, backward = string.length() - 1; forward < limit; forward++, backward--)
+            if (string.charAt(forward) != string.charAt(backward))
+                return false;
+        return true;
+    }
+
+    public void addCharge(int charge) {
+        charges.add(charge);
+    }
+
+    public int totalCharges() {
+        int total = 0;
+        for (int charge: charges)
+            total += charge;
+        return total;
+    }
+
 }

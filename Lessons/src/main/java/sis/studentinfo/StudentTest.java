@@ -117,4 +117,12 @@ public class StudentTest {
         student.setGradingStrategy(new HonorsGradingStrategy());
         return student;
     }
+    @Test
+    public void testCharges() {
+        Student student = new Student("a");
+        student.addCharge(500);
+        student.addCharge(200);
+        student.addCharge(399);
+        Assert.assertEquals(1099, student.totalCharges());
+    }
 }

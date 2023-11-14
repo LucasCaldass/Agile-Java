@@ -2,19 +2,26 @@ package sis.studentinfo;
 import org.junit.Assert;
 
 import java.util.*;
-abstract public class Session implements Comparable<Session> {
+abstract public class Session implements Comparable<Session>, Iterable<Student> {
     private static int count;
+
     private String department;
+
     private String number;
-    private List<Student> students = new ArrayList<Student>();
+
+    private Vector<Student> students = new Vector<Student>();
+
     private Date startDate;
+
     private int numberOfCredits;
+
     protected Session(
             String department, String number, Date startDate) {
         this.department = department;
         this.number = number;
         this.startDate = startDate;
     }
+
     public int compareTo(Session that) {
         int compare =
                 this.getDepartment().compareTo(that.getDepartment());
@@ -22,31 +29,41 @@ abstract public class Session implements Comparable<Session> {
             return compare;
         return this.getNumber().compareTo(that.getNumber());
     }
+
     void setNumberOfCredits(int numberOfCredits) {
         this.numberOfCredits = numberOfCredits;
+
     }public String getDepartment() {
         return department;
     }
+
     public String getNumber() {
         return number;
     }
+
     int getNumberOfStudents() {
         return students.size();
     }
+
     public void enroll(Student student) {
         student.addCredits(numberOfCredits);
         students.add(student);
     }
+
     Student get(int index) {
         return students.get(index);
     }
+
     protected Date getStartDate() {
         return startDate;
     }
+
     public List<Student> getAllStudents() {
         return students;
     }
+
     abstract protected int getSessionLength();
+
     public Date getEndDate() {
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.setTime(getStartDate());
@@ -56,5 +73,25 @@ abstract public class Session implements Comparable<Session> {
                 getSessionLength() * daysInWeek - daysFromFridayToMonday;
         calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
         return calendar.getTime();
+    }
+
+    double averageGpaForPartTimeStudents() {
+        double total = 0.0;
+        int count = 0;
+
+        for (Enumeration<Student> it = students.elements();
+        it.hasMoreElements(); ){
+            Student student = it.nextElement();
+            if (student.isFullTime())
+                continue;
+            count++;
+            total += student.getGpa();
+        }
+        if (count == 0) return 0.0;
+        return total/count;
+    }
+
+    public Iterator<Student> iterator() {
+        return students.iterator();
     }
 }
