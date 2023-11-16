@@ -1,7 +1,9 @@
 package sis.studentinfo;
-import org.junit.Assert;
 
+import org.junit.Assert;
 import java.util.*;
+import java.net.*;
+
 abstract public class Session implements Comparable<Session>, Iterable<Student> {
     private static int count;
 
@@ -14,6 +16,8 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
     private Date startDate;
 
     private int numberOfCredits;
+
+    private URL url;
 
     protected Session(
             String department, String number, Date startDate) {
@@ -94,4 +98,13 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
     public Iterator<Student> iterator() {
         return students.iterator();
     }
+
+    public void setUrl(String urlString) throws MalformedURLException {
+        this.url = new URL(urlString);
+    }
+
+    public URL getUrl() {
+        return url;
+    }
+
 }
