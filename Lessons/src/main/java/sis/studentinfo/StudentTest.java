@@ -3,6 +3,8 @@ package sis.studentinfo;
 import org.junit.*;
 import sis.studentinfo.Student;
 
+import static org.junit.Assert.fail;
+
 public class StudentTest {
 
     private static final double GRADE_TOLERANCE = 0.05;
@@ -125,4 +127,19 @@ public class StudentTest {
         student.addCharge(399);
         Assert.assertEquals(1099, student.totalCharges());
     }
+
+    @Test
+    public void testBadlyFormattedName() {
+        try {
+            new Student("a b c d");
+            fail("expected exception from 4-part name");
+        }
+        catch (StudentNameFormatException expectedException) {
+            Assert.assertEquals(
+                    "Student name 'a b c d' contains more than 3 parts",
+                    expectedException.getMessage()
+            );
+        }
+    }
+
 }

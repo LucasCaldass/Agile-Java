@@ -44,6 +44,14 @@ public class Student  implements Comparable<Student> {
         this.name = fullName;
         credits = 0;
         List<String> nameParts = split(fullName);
+        final int maximumNumberOfNameParts = 3;
+        if (nameParts.size() > maximumNumberOfNameParts){
+            String message =
+                    "Student name '" + fullName +
+                    "' contains more than " + maximumNumberOfNameParts +
+                    " parts";
+            throw new StudentNameFormatException(message);
+        }
         setName(nameParts);
     }
 

@@ -2,6 +2,7 @@ package sis.studentinfo;
 
 import org.junit.Assert;
 import junit.framework.TestCase;
+import org.junit.Test;
 
 import java.util.*;
 import static sis.studentinfo.DateUtil.createDate;
@@ -13,6 +14,8 @@ public class CourseSessionTest extends SessionTest {
         Date sixteenWeeksOut = createDate(2003, 4, 25);
         Assert.assertEquals(sixteenWeeksOut, session.getEndDate());
     }
+
+    @Test
     public void testCount() {
         CourseSession.resetCount();
         createSession("", "", new Date());

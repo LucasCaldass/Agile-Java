@@ -2,11 +2,15 @@ package sis.report;
 
 import junit.framework.*;
 import java.util.*;
+
+import org.junit.Test;
 import sis.studentinfo.CourseSession;
 import org.junit.Assert;
 import static sis.report.ReportConstant.NEWLINE;
 
 public class CourseReportTest {
+
+    @Test
     public void testReport() {
         final Date date = new Date();
         CourseReport report = new CourseReport();
