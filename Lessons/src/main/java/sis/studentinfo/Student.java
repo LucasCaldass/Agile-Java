@@ -5,10 +5,14 @@ import java.util.*;
 public class Student  implements Comparable<Student> {
 
     private String firstName = "";
+
     private String middleName = "";
+
     private String lastName;
+
     private GradingStrategy gradingStrategy =
             new BasicGradingStrategy();
+
     private boolean isHonors = false;
 
     @Override
@@ -35,11 +39,17 @@ public class Student  implements Comparable<Student> {
     };
 
     private ArrayList<Grade> grades = new ArrayList<>();
+
     static final String IN_STATE = "CO";
+
     private String name;
+
     private int credits;
+
     static final int CREDITS_REQUIRED_FOR_FULL_TIME = 12;
+
     private String state = "";
+
     public Student(String fullName) {
         this.name = fullName;
         credits = 0;
@@ -106,9 +116,11 @@ public class Student  implements Comparable<Student> {
     public String getFirstName() {
         return firstName;
     }
+
     public String getMiddleName() {
         return middleName;
     }
+
     public String getLastName() {
         return lastName;
     }
