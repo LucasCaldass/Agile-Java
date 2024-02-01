@@ -2,25 +2,28 @@ package sis.report;
 
 import java.util.*;
 import sis.studentinfo.*;
-import static sis.report.ReportConstant.NEWLINE;
+import static sis.report.RosterReporter.NEWLINE;
 
-public class CourseReport {
-    private ArrayList<CourseSession> sessions =
-            new ArrayList<CourseSession>();
+public class CourseReport implements Comparable{
+
+    private ArrayList<CourseSession> sessions = new ArrayList<>();
 
     public void add(CourseSession session) {
-        sessions.add(session);
+        this.sessions.add(session);
     }
 
     public String text() {
         Collections.sort(sessions);
         StringBuilder builder = new StringBuilder();
         for(CourseSession session : sessions) {
-            builder.append(
-                    session.getDepartment() + " " +
-                    session.getNumber() + NEWLINE
-            );
+            builder.append(session.getDepartment() + " " +
+                    session.getNumber() + NEWLINE);
         }
         return builder.toString();
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

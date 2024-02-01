@@ -6,7 +6,7 @@ import java.util.*;
 import org.junit.Test;
 import sis.studentinfo.CourseSession;
 import org.junit.Assert;
-import static sis.report.ReportConstant.NEWLINE;
+import static sis.report.RosterReporter.NEWLINE;
 
 public class CourseReportTest {
 

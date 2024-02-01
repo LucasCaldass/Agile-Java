@@ -4,7 +4,8 @@ import java.util.*;
 import sis.studentinfo.*;
 
 public class ReportCard {
-    static final String A_MESSAGE = "Excelent";
+
+    static final String A_MESSAGE = "Excellent";
     static final String B_MESSAGE = "Very good";
     static final String C_MESSAGE = "Hmmm...";
     static final String D_MESSAGE = "You're not trying";
@@ -16,15 +17,15 @@ public class ReportCard {
         return getMessages().get(grade);
     }
 
-    private Map<Student.Grade, String> getMessages() {
-        if (messages == null)
+    Map<Student.Grade, String> getMessages() {
+        if(messages == null) {
             loadMessages();
+        }
         return messages;
     }
 
     private void loadMessages() {
-        messages =
-                new EnumMap<Student.Grade, String>(Student.Grade.class);
+        messages = new EnumMap<>(Student.Grade.class);
         messages.put(Student.Grade.A, A_MESSAGE);
         messages.put(Student.Grade.B, B_MESSAGE);
         messages.put(Student.Grade.C, C_MESSAGE);

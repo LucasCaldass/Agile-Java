@@ -1,27 +1,20 @@
 package sis.studentinfo;
 
-import org.junit.Assert;
 import java.util.*;
 import java.net.*;
+import java.io.*;
 
 abstract public class Session implements Comparable<Session>, Iterable<Student> {
     private static int count;
-
     private String department;
-
     private String number;
-
-    private Vector<Student> students = new Vector<Student>();
-
+    private List<Student> students = new ArrayList<Student>();
     private Date startDate;
-
     private int numberOfCredits;
-
     private URL url;
 
     protected Session(
             String department, String number, Date startDate) {
-        this.department = department;
         this.number = number;
         this.startDate = startDate;
     }
@@ -36,8 +29,13 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
 
     void setNumberOfCredits(int numberOfCredits) {
         this.numberOfCredits = numberOfCredits;
+    }
 
-    }public String getDepartment() {
+    int getNumberOfCredits() {
+        return numberOfCredits;
+    }
+
+    public String getDepartment() {
         return department;
     }
 
@@ -82,28 +80,24 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
     double averageGpaForPartTimeStudents() {
         double total = 0.0;
         int count = 0;
-
-        for (Enumeration<Student> it = students.elements();
-        it.hasMoreElements(); ){
-            Student student = it.nextElement();
+        for (Student student: students) {
             if (student.isFullTime())
                 continue;
             count++;
             total += student.getGpa();
         }
         if (count == 0) return 0.0;
-        return total/count;
+        return total / count;
     }
 
     public Iterator<Student> iterator() {
         return students.iterator();
     }
 
-    public void setUrl(String urlString) throws SessionException {
+    public void setUrl(String url) throws SessionException {
         try {
-            this.url = new URL(urlString);
-        }
-        catch (MalformedURLException e) {
+            this.url = new URL(url);
+        } catch (MalformedURLException e) {
             log(e);
             throw new SessionException(e);
         }
@@ -115,6 +109,23 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
 
     public URL getUrl() {
         return url;
+    }
+
+    private void writeObject(ObjectOutputStream output) throws IOException {
+        output.defaultWriteObject();
+        output.writeInt(students.size());
+        for(Student student : students)
+            output.writeObject(student.getLastName());
+    }
+
+    private void readObject(ObjectInputStream input) throws Exception {
+        input.defaultReadObject();
+        students = new ArrayList<>();
+        int size = input.readInt();
+        for(int i = 0; i < size; i++) {
+            String lastName = (String)input.readObject();
+            students.add(Student.findByLastName(lastName));
+        }
     }
 
 }

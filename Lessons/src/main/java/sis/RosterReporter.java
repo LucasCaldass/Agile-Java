@@ -1,6 +1,8 @@
-package sis.studentinfo;
+package sis;
 
 import sis.report.ReportConstant;
+import sis.studentinfo.CourseSession;
+import sis.studentinfo.Student;
 
 public class RosterReporter {
     static final String ROSTER_REPORT_HEADER =

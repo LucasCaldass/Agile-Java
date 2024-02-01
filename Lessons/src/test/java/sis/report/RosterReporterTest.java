@@ -1,9 +1,9 @@
-package sis.studentinfo;
+package sis.report;
 
 import org.junit.Assert;
 import org.junit.Test;
+import sis.RosterReporter;
 import sis.studentinfo.CourseSession;
-import sis.studentinfo.RosterReporter;
 import sis.studentinfo.Student;
 
 import static sis.report.ReportConstant.NEWLINE;

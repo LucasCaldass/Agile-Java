@@ -15,5 +15,4 @@ public class Scorer {
             return false;
         }
     }
-
 }
