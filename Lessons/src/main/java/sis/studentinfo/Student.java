@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Logger;
 
-public class Student implements Comparable<Student>, Serializable{
+public class Student implements Comparable<Student>, Serializable {
 
     private String id;
     private String name;
@@ -35,21 +35,17 @@ public class Student implements Comparable<Student>, Serializable{
     final static Logger logger = Logger.getLogger(Student.class.getName());
     static final String TOO_MANY_NAME_PARTS_MSG =
             "Student name '%s' contains more than %d parts";
-
     public enum Flag {
         ON_CAMPUS(1),
         TAX_EXEMPT(2),
         MINOR(4),
         TROUBLEMAKER(8);
-
         private int mask;
-
         Flag(int mask) {
             this.mask = mask;
         }
     }
     private int settings = 0x0;
-
     public Student(String name) {
         this.name = name;
         this.credits = 0;
@@ -61,7 +57,6 @@ public class Student implements Comparable<Student>, Serializable{
         }
         setName(nameParts);
     }
-
     private void setName(List<String> nameParts) {
         this.lastName = removeLast(nameParts);
         String name = removeLast(nameParts);
@@ -72,13 +67,11 @@ public class Student implements Comparable<Student>, Serializable{
             this.firstName = removeLast(nameParts);
         }
     }
-
     private String removeLast(List<String> list) {
         if (list.isEmpty())
             return "";
         return list.remove(list.size() - 1);
     }
-
     private List<String> split(String fullName) {
         List<String> results = new ArrayList<>();
         for(String name : fullName.split(" ")) {
@@ -86,7 +79,6 @@ public class Student implements Comparable<Student>, Serializable{
         }
         return results;
     }
-
     @Override
     public int compareTo(Student student) {
         return this.getName().compareTo(student.getName());
@@ -94,8 +86,8 @@ public class Student implements Comparable<Student>, Serializable{
     public void setName(String name) {
         this.name = name;
     }
-    public String setId() {
-        return id;
+    public void setId(String id) {
+        this.id = id;
     }
     public String getId() {
         return id;
@@ -121,7 +113,6 @@ public class Student implements Comparable<Student>, Serializable{
     public void addGrade(Grade grade) {
         grades.add(grade);
     }
-
     public double getGpa() {
         Student.logger.fine("begin getGpa " + System.currentTimeMillis());
         if(grades.isEmpty()) {
@@ -134,7 +125,6 @@ public class Student implements Comparable<Student>, Serializable{
         Student.logger.fine("end getGpa " + System.currentTimeMillis());
         return total / grades.size();
     }
-
     public boolean isFullTime() {
         return credits >= CREDITS_REQUIRED_FOR_FULL_TIME;
     }
@@ -156,24 +146,19 @@ public class Student implements Comparable<Student>, Serializable{
             total += charge;
         return total;
     }
-
     public void set(Flag... flags) {
         for(Flag flag : flags)
             settings |= flag.mask;
     }
-
     public void unset(Flag... flags) {
         for(Flag flag : flags)
             settings &= ~flag.mask;
     }
-
     public boolean isOn(Flag flag) {
         return (settings & flag.mask) == flag.mask;
     }
-
     public boolean isOff(Flag flag) {
         return !isOn(flag);
     }
-
     public static Student findByLastName(String lastName) { return new Student(lastName); }
 }

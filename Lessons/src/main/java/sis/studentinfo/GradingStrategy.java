@@ -2,6 +2,6 @@ package sis.studentinfo;
 
 import java.io.Serializable;
 
-public interface GradingStrategy {
+public interface GradingStrategy extends Serializable {
     int getGradePointsFor(Student.Grade grade);
 }
